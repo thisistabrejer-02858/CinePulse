@@ -1,0 +1,92 @@
+.register-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6f8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.register-card {
+  width: 360px;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.register-card h2 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.register-card label {
+  font-size: 13px;
+  color: #333;
+  display: block;
+  margin-top: 10px;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.register-card input:focus {
+  border-color: #111;
+}
+
+.register-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.register-card button:hover {
+  background: #333;
+}
+
+.footer-text {
+  margin-top: 15px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.footer-text span {
+  color: #111;
+  cursor: pointer;
+  font-weight: 500;
+}
+.flash-message {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.flash-message.success {
+  background: rgba(0, 255, 0, 0.1);
+  color: #00ff88;
+}
+
+.flash-message.error {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff4b4b;
+}

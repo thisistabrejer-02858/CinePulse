@@ -4,7 +4,7 @@ import { data } from "react-router-dom";
 const API_KEY = "29de4a1bad3afd3ae282dfa3c30ac373";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-const BACKEND_URL = "http://localhost:5000/api";
+const BACKEND_URL = "https://cinepulse-u77p.onrender.com/api/";
 
 export const registerUser = async (email, password) => {
   const res = await fetch(`${BACKEND_URL}/auth/register`, {

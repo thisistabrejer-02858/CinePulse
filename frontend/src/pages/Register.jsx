@@ -31,7 +31,6 @@ if (!res.ok) {
       setType("success");
 setMessage("Account created successfully!");
 
-      // ✅ redirect to login
       navigate("/login");
 
     } catch (err) {

@@ -13,8 +13,11 @@ const userSchema = new mongoose.Schema({
   favourites: [
     {
       id: String,
+      imdbID: String,
       title: String,
       poster: String,
+      release_date: String,
+      vote_average: Number,
       year: String,
     }
   ]

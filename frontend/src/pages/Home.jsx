@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MovieCard from '../components/MovieCard'
-import { searchMovies, getPopularMovies } from '../services/api'
+import { searchMovies, getPopularMovies, } from '../services/api'
 import { fetchWithAuth } from '../services/api'
 import '../css/Home.css'
 
@@ -13,12 +13,13 @@ function Home() {
   const loadFavourites = async () => {
     const res = await fetchWithAuth("/favourites")
     const data = await res.json()
+    console.log(data);
 
     const formatted = data.map(movie => ({
-      id: movie.imdbID,
-      title: movie.title,
-      poster_path: movie.poster.replace("https://image.tmdb.org/t/p/w500", "")
-    }))
+       id: String(movie.id || movie.imdbID),
+       title: movie.title,
+       poster_path: (movie.poster || "").replace("https://image.tmdb.org/t/p/w500", "")
+        }))
 
     setFavourites(formatted)
   }
@@ -34,6 +35,18 @@ function Home() {
     loadPopularMovies()
     loadFavourites()
   }, [])
+
+    useEffect(() => {
+    const resetHomeFeed = () => {
+      setSearchQuery('')
+      loadPopularMovies()
+    }
+
+    window.addEventListener('home:reset', resetHomeFeed)
+    return () => window.removeEventListener('home:reset', resetHomeFeed)
+  }, [])
+
+
 
   const onSearchSubmit = async (e) => {
     e.preventDefault()
@@ -52,7 +65,7 @@ function Home() {
   return (
     <div className="home">
 
-      {/* 🔥 HERO SECTION */}
+      {/* HERO */}
       <div className="hero">
         <h1>Discover Movies</h1>
         <p>Explore trending, popular and your favourite movies</p>
@@ -78,7 +91,7 @@ function Home() {
           <div className="movies-grid">
             {movies.map(movie => (
               <MovieCard
-                key={movie.id}
+                key={movie.id  || movie.imdbID}
                 movie={movie}
                 favourites={favourites}
                 refreshFavourites={loadFavourites}

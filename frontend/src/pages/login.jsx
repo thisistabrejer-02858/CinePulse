@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -61,7 +62,7 @@ function Login() {
         </form>
 
         <p className="footer-text">
-          Don’t have an account? <span>Register</span>
+          Don’t have an account? <span><Link to="/register">Register</Link></span>
         </p>
       </div>
     </div>

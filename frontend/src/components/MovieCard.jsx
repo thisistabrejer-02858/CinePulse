@@ -7,16 +7,14 @@ function MovieCard({ movie, favourites = [], refreshFavourites }) {
 
   const navigate = useNavigate();
 
-  // ✅ Normalize ID
-  const movieId = movie.id || movie.imdbID;
-
-  // ✅ Favourite check
+ const movieId = String(movie.id || movie.imdbID || "");
   const isFav = favourites.some(
-    fav => String(fav.id) === String(movieId)
+    fav => String(fav.id || fav.imdbID) === String(movieId)
   );
 
   const onFavoriteClick = async (e) => {
     e.preventDefault();
+      if (!movieId) return;
 
     if (isFav) {
       await fetchWithAuth(`/favourites/${String(movieId)}`, {
@@ -27,9 +25,11 @@ function MovieCard({ movie, favourites = [], refreshFavourites }) {
         method: "POST",
         body: JSON.stringify({
           imdbID: String(movieId),
+             id: String(movieId),
           title: movie.title,
           poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          release_date: movie.release_date
+          release_date: movie.release_date,
+          vote_average: movie.vote_average
         })
       });
     }
@@ -44,7 +44,7 @@ function MovieCard({ movie, favourites = [], refreshFavourites }) {
   return (
     <div
       className="movie-card"
-      onClick={() => navigate(`/movie/${movieId}`)} // ✅ FIXED
+      onClick={() => movieId && navigate(`/movie/${movieId}`)}
     >
       <div className="movie-poster">
         <img 
@@ -56,7 +56,7 @@ function MovieCard({ movie, favourites = [], refreshFavourites }) {
           <button 
             className={`favourite-btn ${isFav ? 'active' : ''}`}
             onClick={(e) => {
-              e.stopPropagation(); // ✅ prevent navigation
+              e.stopPropagation(); 
               onFavoriteClick(e);
             }}
           >

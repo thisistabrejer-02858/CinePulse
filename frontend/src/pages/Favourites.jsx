@@ -6,23 +6,21 @@ import MovieCard from '../components/MovieCard'
 function Favourite() {
   const [favourites, setFavourites] = useState([])
 
-  // ✅ Move function OUTSIDE
   const loadFavourites = async () => {
     const res = await fetchWithAuth("/favourites")
     const data = await res.json()
+    const safeData = Array.isArray(data) ? data : []
 
-    const formatted = data.map(movie => ({
-       id: String(movie.imdbID || movie.id), // ✅ ensure id is string
+    const formatted = safeData.map(movie => ({
+       id: String(movie.id || movie.imdbID),
       title: movie.title,
-      poster_path: movie.poster.replace("https://image.tmdb.org/t/p/w500", ""),
-      vote_average: 0,
-      release_date: ""
+       poster_path: (movie.poster || "").replace("https://image.tmdb.org/t/p/w500", ""),
+      vote_average: movie.vote_average || 0,
+      release_date: movie.release_date || ""
     }))
 
     setFavourites(formatted)
   }
-
-  // ✅ Now use it here
   useEffect(() => {
     loadFavourites()
   }, [])
@@ -38,7 +36,7 @@ function Favourite() {
               key={movie.id || movie.imdbID}
                movie={movie} 
               favourites={favourites} 
-              refreshFavourites={loadFavourites} // ✅ now works
+              refreshFavourites={loadFavourites}
             />
           ))}
         </div>

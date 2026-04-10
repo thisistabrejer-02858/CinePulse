@@ -5,15 +5,16 @@ import '../css/NavBar.css'
 
 function NavBar() {
   const { user, logout } = useAuth()
+  const resetHomeIfNeeded = () => window.dispatchEvent(new Event('home:reset'))
 
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">CinePulse</Link>
+        <Link to="/" onClick={resetHomeIfNeeded}>CinePulse</Link>
       </div>
 
       <div className="navbar-links">
-        <Link to="/" className="nav-link" >Home</Link>
+        <Link to="/" className="nav-link" onClick={resetHomeIfNeeded}>Home</Link>
         <Link to="/favourites" className="nav-link">Favourites</Link>
         
         {!user && (

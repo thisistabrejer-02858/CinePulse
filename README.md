@@ -40,7 +40,7 @@ CinePulse is a modern movie web application that allows users to explore trendin
 Create a `.env` file in the root:
 
 ```
-VITE_TMDB_API_KEY=your_tmdb_api_key
+VITE_TMDB_API_KEY=
 VITE_BACKEND_URL=http://localhost:5000/api
 
 
@@ -51,7 +51,7 @@ VITE_BACKEND_URL=http://localhost:5000/api
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/your-username/cinepulse.git
+git clone https://github.com/thisistabrej.er-02858/CinePulse.git
 cd cinepulse
 ```
 
@@ -130,7 +130,7 @@ This project is built for learning and portfolio purposes. It demonstrates full-
    * Build command: `npm run build`
    * Output directory: `dist`
 3. Add environment variables:
-   * `VITE_TMDB_API_KEY=your_tmdb_api_key`
+   * `VITE_TMDB_API_KEY=`
    * `VITE_BACKEND_URL=https://cinepulse-api.onrender.com/api`
 4. Deploy.
 
